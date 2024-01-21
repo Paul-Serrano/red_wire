@@ -39,4 +39,3 @@ latitude, longitude = weather_fetcher.localisation()
 
 # Obtention des données météorologiques
 weather_fetcher.get_weather(latitude, longitude)
-weather_fetcher.get_localisation(latitude, longitude)
