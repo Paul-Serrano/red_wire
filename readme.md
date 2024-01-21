@@ -5,11 +5,13 @@ docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb:/dat
 
 # Python
 
+- cd backend
 - python -m venv venv
 - .\venv\Scripts\activate
 - pip install pymongo
 - pip install requests
 - pip install python_dotenv
+- pip install Flask
 <!-- - pip install bson package un pau moisis -->
 
 # Angular
