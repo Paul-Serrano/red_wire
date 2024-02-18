@@ -1,8 +1,3 @@
-```sh
-docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb:/data/db/ mongodb/mongodb-community-server:latest
-
-```
-
 # Python
 
 - cd backend
@@ -21,6 +16,27 @@ docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb:/dat
 - ng new app (? Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? Yes)
 - cd red_wire_app
 - ng serve -o
+
+# Tailwind CSS
+
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init
+
+# Google authentification
+
+- https://www.youtube.com/watch?v=EO-U01u9vFQ&ab_channel=Let%27sProgram
+
+# Launch App
+
+```sh
+docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb:/data/db/ mongodb/mongodb-community-server:latest
+
+```
+
+- run backend/app.py
+- cd .\red_wire_app\
+- ng serve -o
+- http://localhost:4200/
 
 ## Définir une stack
 
