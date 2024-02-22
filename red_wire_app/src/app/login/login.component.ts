@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { response } from 'express';
+import { AuthServiceService } from '../services/auth-service.service';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,11 @@ import { response } from 'express';
 })
 export class LoginComponent implements OnInit {
   private router = inject(Router);
+
+  constructor(private auth: AuthServiceService) {
+    provideHttpClient(withFetch());
+  }
+
   ngOnInit(): void {
     google.accounts.id.initialize({
       client_id:
@@ -37,6 +44,8 @@ export class LoginComponent implements OnInit {
       const payload = this.decodeToken(response.credential);
 
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
+
+      console.log(response.credential);
 
       this.router.navigate(['browse']);
     }

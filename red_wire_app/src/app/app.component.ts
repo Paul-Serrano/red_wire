@@ -17,6 +17,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  title: any;
   weatherData: any; // Propriété pour stocker les données
 
   constructor(private dataservice: DataService) {
@@ -26,17 +27,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getWeatherData();
   }
-
-  // getWeatherData(): void {
-  //   this.dataservice.getWeather().subscribe(
-  //     (data) => {
-  //       this.weatherData = data; // Affectez les données à la propriété
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
 
   getWeatherData(): void {
     const observer: Observer<any> = {

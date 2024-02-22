@@ -7,6 +7,7 @@
 - pip install requests
 - pip install python_dotenv
 - pip install Flask
+- pip install flask-cors
 <!-- - pip install bson package un pau moisis -->
 
 # Angular
