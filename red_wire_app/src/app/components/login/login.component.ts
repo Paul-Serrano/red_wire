@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { response } from 'express';
-import { AuthServiceService } from '../services/auth-service.service';
+import { AuthService } from '../../services/auth.service';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @Component({
@@ -16,7 +16,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   private router = inject(Router);
 
-  constructor(private auth: AuthServiceService) {
+  constructor(private auth: AuthService) {
     provideHttpClient(withFetch());
   }
 

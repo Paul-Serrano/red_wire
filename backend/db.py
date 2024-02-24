@@ -2,7 +2,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from weather import WeatherFetcher
 
-class DatabaseManager:
+class Db:
     def __init__(self, uri, server_api_version='1'):
         self.uri = uri
         self.client = MongoClient(uri, server_api=ServerApi(server_api_version))
@@ -64,7 +64,7 @@ class DatabaseManager:
 
 # Utilisation de la classe DatabaseManager avec la variable uri
 uri = "mongodb://localhost:27017"
-database_manager = DatabaseManager(uri)
+database_manager = Db(uri)
 
 # Vérifie la connexion à la base de données
 database_manager.check_connection()

@@ -1,8 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
-CORS(app, origins='http://localhost:4200/')
+env_path = os.path.join(os.path.dirname(__file__), 'config', '.env')
+load_dotenv(env_path)
+angular_api_url= os.getenv("LOCAL_ANGULAR")
+CORS(app, origins=angular_api_url)
 
 @app.route('/user-data', methods=['POST'])
 def receive_user_data():

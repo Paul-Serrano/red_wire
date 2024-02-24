@@ -1,5 +1,5 @@
 declare var google: any;
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment_user } from '../../environments/environment';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthServiceService {
+export class AuthService {
   router = inject(Router);
   private url = `${environment_user.url}`;
 
@@ -19,10 +19,14 @@ export class AuthServiceService {
     this.router.navigate(['/']);
   }
 
-  sendUserData(userData: object): Observable<any> {
-    console.log(userData);
+  sendUserData(userData: any): Observable<any> {
     let route = this.url;
     console.log(route);
-    return this.http.post<any>('http://localhost:5000/user-data', userData);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any>(this.url, userData, {
+      headers: headers,
+    });
   }
 }
