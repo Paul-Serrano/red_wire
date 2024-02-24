@@ -1,13 +1,13 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from weather import WeatherFetcher
+from backend.models.weather import Weather
 
 class Db:
     def __init__(self, uri, server_api_version='1'):
         self.uri = uri
         self.client = MongoClient(uri, server_api=ServerApi(server_api_version))
         self.db = self.client.red_wire
-        self.weather = WeatherFetcher()
+        self.weather = Weather()
 
     def check_connection(self):
         try:

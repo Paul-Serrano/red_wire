@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-env_path = os.path.join(os.path.dirname(__file__), 'config', '.env')
+env_path = os.path.join(os.path.dirname(__file__), '../config', '.env')
 load_dotenv(env_path)
 angular_api_url= os.getenv("LOCAL_ANGULAR")
 CORS(app, origins=angular_api_url)

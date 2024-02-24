@@ -2,7 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 
-class WeatherFetcher:
+class Weather:
     def __init__(self):
         # Spécifie le chemin du fichier .env
         env_path = os.path.join(os.path.dirname(__file__), 'config', '.env')
@@ -10,10 +10,10 @@ class WeatherFetcher:
 
         # Récupère la clé API à partir des variables d'environnement
         self.api_key = os.getenv("API_KEY_OPEN_WEATHER")
+        self.api_loc_url = os.getenv("API_URL_LOCALISATION")
 
     def get_localisation(self):
-        url = "http://ipinfo.io/json"
-        reponse = requests.get(url)
+        reponse = requests.get(self.api_loc_url)
         data = reponse.json()
 
         latitude, longitude = map(float, data['loc'].split(','))
