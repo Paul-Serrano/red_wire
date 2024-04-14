@@ -14,4 +14,8 @@ export class DataService {
   getWeather(): Observable<any> {
     return this.http.get<any>(this.url);
   }
+
+  getLoc(): Observable<any> {
+    return this.http.get<any>(this.url);
+  }
 }

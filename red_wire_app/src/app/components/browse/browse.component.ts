@@ -8,11 +8,12 @@ import {
 import { Observer } from 'rxjs';
 import { User } from '../../models/user.model';
 import { DataService } from '../../services/data.service';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, MapComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -47,13 +48,14 @@ export class BrowseComponent implements OnInit {
     this.auth.signOut();
   }
 
-  sendUserDataToBackend(userData: any) {
+  sendUserDataToBackend(userData: any): void {
     const observer: Observer<any> = {
       next: (data) => {
+        console.log(data);
         this.user = data;
       },
       error: (error) => {
-        console.error('Observer issue : ' + error);
+        console.error('Google observer issue : ', error);
       },
       complete: () => {
         // Optionally handle completion if needed

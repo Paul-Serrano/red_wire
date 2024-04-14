@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
         this.weatherData = data;
       },
       error: (error) => {
-        console.error('Observer issue');
+        console.error('Weather Obeserver issue');
       },
       complete: () => {
         // Optionally handle completion if needed
