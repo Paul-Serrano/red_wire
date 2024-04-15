@@ -9,6 +9,7 @@ import { Observer } from 'rxjs';
 import { User } from '../../models/user.model';
 import { DataService } from '../../services/data.service';
 import { MapComponent } from '../map/map.component';
+import { Weather } from '../../models/weather.model';
 
 @Component({
   selector: 'app-browse',
@@ -19,7 +20,7 @@ import { MapComponent } from '../map/map.component';
 })
 export class BrowseComponent implements OnInit {
   user!: User;
-  weather_now: any;
+  weather_now!: Weather;
 
   constructor(private auth: AuthService, private dataservice: DataService) {
     provideHttpClient(withFetch());
@@ -35,12 +36,11 @@ export class BrowseComponent implements OnInit {
       temp_user.given_name,
       temp_user.email,
       temp_user.locale,
-      temp_object,
+      this.getWeatherData(),
       temp_array,
       temp_object
     );
-    console.log(this.user);
-    this.getWeatherData();
+    // this.getWeatherData();
     this.sendUserDataToBackend(this.user);
   }
 
@@ -52,6 +52,7 @@ export class BrowseComponent implements OnInit {
   sendUserDataToBackend(userData: any): void {
     const observer: Observer<any> = {
       next: (data) => {
+        console.log(this.user)
         this.user = data;
       },
       error: (error) => {
@@ -65,11 +66,11 @@ export class BrowseComponent implements OnInit {
     this.auth.sendUserData(userData).subscribe(observer);
   }
 
-  getWeatherData(): void {
+  getWeatherData(): Weather {
     const observer: Observer<any> = {
       next: (data) => {
-        console.log(data);
         this.weather_now = data;
+        console.log(this.weather_now)
       },
       error: (error) => {
         console.error('Observer issue');
@@ -79,8 +80,8 @@ export class BrowseComponent implements OnInit {
       },
     };
 
-    console.log(this.weather_now);
-
     this.dataservice.getWeather().subscribe(observer);
+
+    return this.weather_now
   }
 }

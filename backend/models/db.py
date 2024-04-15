@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from backend.models.weather import Weather
+from .weather import Weather
 
 class Db:
     def __init__(self, uri, server_api_version='1'):

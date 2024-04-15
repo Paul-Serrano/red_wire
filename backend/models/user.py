@@ -1,4 +1,4 @@
-from backend.models.db import Db
+from .db import Db
 from dotenv import load_dotenv
 import os
 
@@ -11,7 +11,7 @@ class User:
             email: str, 
             locale: str, 
             weather_now: dict, 
-            weather_history: list,
+            # weather_history: list,
             ):
         self.client_id = client_id
         self.family_name = family_name
@@ -19,7 +19,7 @@ class User:
         self.email = email
         self.locale = locale
         self.weather_now = weather_now
-        self.weather_history = weather_history
+        # self.weather_history = weather_history
         self.api_loc_url = os.getenv("API_URL_LOCALISATION")
 
     def save_user(self):

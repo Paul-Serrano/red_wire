@@ -21,7 +21,6 @@ export class AuthService {
 
   sendUserData(userData: any): Observable<any> {
     let route = this.url;
-    console.log(route);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
