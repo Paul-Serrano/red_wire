@@ -1,24 +1,34 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from multiprocessing import Process
-from api.post_angular import app as angular_post_app
-from api.get_api_open_weather import app as open_weather_app
+from dotenv import load_dotenv
+
+from models.weather import Weather
+import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, ressources={r"/*": { "origins": "*" }})
 
-def run_open_weather_api():
-    open_weather_app.run(debug=True)
+env_path = os.path.join(os.path.dirname(__file__), './config', '.env')
+load_dotenv(env_path)
+angular_api_url= os.getenv("LOCAL_ANGULAR")
 
-def run_angular_post_api():
-    angular_post_app.run(debug=True)
+weather_fetcher = Weather()
 
-if __name__ == '__main__':
-    open_weather_process = Process(target=run_open_weather_api)
-    angular_post_process = Process(target=run_angular_post_api)
+@app.route('/user-data', methods=['POST'])
+def receive_user_data():
+    data = request.json  # Récupérer les données envoyées en JSON depuis Angular
+    # Traiter les données comme vous le souhaitez
+    print("Données utilisateur reçues :", data)
+    
+    # Exemple de réponse
+    return jsonify(data), 200
 
-    open_weather_process.start()
-    angular_post_process.start()
+@app.route('/', methods=['GET'])
+def get_weather():
+    latitude = weather_fetcher.get_localisation()["lat"]
+    longitude = weather_fetcher.get_localisation()["lon"]
+    # latitude, longitude = weather_fetcher.get_localisation()
+    weather_data = weather_fetcher.get_weather(latitude, longitude)
+    return jsonify(weather_data)
 
-    open_weather_process.join()
-    angular_post_process.join()
+app.run(debug=True)

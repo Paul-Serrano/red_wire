@@ -19,6 +19,7 @@ import { MapComponent } from '../map/map.component';
 })
 export class BrowseComponent implements OnInit {
   user!: User;
+  weather_now: any;
 
   constructor(private auth: AuthService, private dataservice: DataService) {
     provideHttpClient(withFetch());
@@ -51,7 +52,6 @@ export class BrowseComponent implements OnInit {
   sendUserDataToBackend(userData: any): void {
     const observer: Observer<any> = {
       next: (data) => {
-        console.log(data);
         this.user = data;
       },
       error: (error) => {
@@ -69,7 +69,7 @@ export class BrowseComponent implements OnInit {
     const observer: Observer<any> = {
       next: (data) => {
         console.log(data);
-        this.user.weather_now = data;
+        this.weather_now = data;
       },
       error: (error) => {
         console.error('Observer issue');
@@ -79,7 +79,7 @@ export class BrowseComponent implements OnInit {
       },
     };
 
-    console.log(this.user.weather_now);
+    console.log(this.weather_now);
 
     this.dataservice.getWeather().subscribe(observer);
   }
