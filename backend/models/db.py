@@ -1,9 +1,11 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from .weather import Weather
+from models.weather import Weather
+import os
 
 class Db:
     def __init__(self, uri, server_api_version='1'):
+        self.api_loc_url = os.getenv("API_URL_LOCALISATION")
         self.uri = uri
         self.client = MongoClient(uri, server_api=ServerApi(server_api_version))
         self.db = self.client.red_wire
@@ -29,11 +31,13 @@ class Db:
             # Tente de créer la collection
             self.create_collection(collection_name)
 
-            # Insère ou met à jour les données dans la collection
-            self.db[collection_name].replace_one({}, data, upsert=True)
-            print(f"Données insérées/mises à jour dans la collection '{collection_name}'.")
+            # Insère les données dans la collection
+            self.db[collection_name].insert_one(data)
+            print(f"Données insérées dans la collection '{collection_name}'.")
+            print("db.py :")
+            print(data)
         except Exception as e:
-            print(f"Erreur lors de l'insertion/mise à jour dans la collection '{collection_name}': {e}")
+            print(f"Erreur lors de l'insertion dans la collection '{collection_name}': {e}")
 
 
     def get_collection_data(self, collection_name):
@@ -55,27 +59,6 @@ class Db:
     def list_databases(self):
         return self.client.list_database_names()
     
-    def get_weather(self):
-        loc = self.weather.get_localisation()
-        lon = loc['lon']
-        lat = loc['lat']
-        return self.weather.get_weather(lat, lon)
-
-
-# Utilisation de la classe DatabaseManager avec la variable uri
-uri = "mongodb://localhost:27017"
-database_manager = Db(uri)
-
-# Vérifie la connexion à la base de données
-database_manager.check_connection()
-
-# Crée la collection 'user' si elle n'existe pas
-database_manager.create_collection('user')
-
-# Affiche la liste des bases de données
-print("Liste des bases de données :", database_manager.list_databases())
-
-database_manager.set_collection('user', database_manager.get_weather())
-
-# test = database_manager.get_collection_data('user')
-# print(test)
+    def save_in_db(self, data):
+        self.check_connection()
+        self.set_collection('user', data)

@@ -32,6 +32,8 @@
 ```sh
 docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb:/data/db/ mongodb/mongodb-community-server:latest
 
+docker run --name mongodb -d -p 27017:27017 -v c:/Users/Utilisateur/mongodb mongodb/mongodb-community-server:latest
+
 ```
 
 - run backend/app.py

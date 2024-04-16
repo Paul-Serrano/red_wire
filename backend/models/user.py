@@ -1,5 +1,4 @@
 from .db import Db
-from dotenv import load_dotenv
 import os
 
 class User:
