@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+from bson import json_util
+import json
 from flask_cors import CORS
 from dotenv import load_dotenv
 from models.weather import Weather
@@ -22,7 +24,8 @@ db = Db(mongoDb_url)
 latitude = weather_fetcher.get_localisation()["lat"]
 longitude = weather_fetcher.get_localisation()["lon"]
 
-date_time = datetime.datetime.now()
+def serializeBson(data):
+    return jsonify(json.dumps(data, default=json_util.default))
 
 @app.route('/user-data', methods=['POST'])
 def receive_user_data():
@@ -31,19 +34,35 @@ def receive_user_data():
     data.pop("weather_history", None)
     data.pop("user_stats", None)
     data['weather_now'] = weather_fetcher.get_weather(latitude, longitude)
+    date_time = datetime.datetime.now()
     data['weather_now']['date'] = date_time.date().isoformat()
     data['weather_now']['time'] = date_time.strftime("%H:%M:%S")
-    print("app.py :")
-    print(data)
     db.save_in_db(data)
 
-    
+ 
     # Exemple de réponse
-    return jsonify(data), 200
+    return serializeBson(data), 200
 
 @app.route('/', methods=['GET'])
 def get_weather():
     weather_data = weather_fetcher.get_weather(latitude, longitude)
-    return jsonify(weather_data)
+    return jsonify(weather_data), 200
+
+@app.route('/history-data', methods=['GET'])
+def get_user_history():
+    # Assurez-vous d'avoir la clé 'email' dans les paramètres de la requête GET
+    email = request.args.get('email')
+    print('email')
+    print(email)
+    # return '', 200
+    weather_history = []
+    if email:
+        user_history = db.get_user_history(email)
+        for user_object in user_history:
+            weather_history.append(user_object['weather_now'])
+        print(weather_history[0]['name'])
+        return serializeBson(weather_history), 200
+    else:
+        return jsonify({"error": "Email not provided"}), 400
 
 app.run(debug=True)

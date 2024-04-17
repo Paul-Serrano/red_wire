@@ -33,9 +33,9 @@ class Db:
 
             # Insère les données dans la collection
             self.db[collection_name].insert_one(data)
-            print(f"Données insérées dans la collection '{collection_name}'.")
-            print("db.py :")
-            print(data)
+            # print(f"Données insérées dans la collection '{collection_name}'.")
+            # print("db.py :")
+            # print(data)
         except Exception as e:
             print(f"Erreur lors de l'insertion dans la collection '{collection_name}': {e}")
 
@@ -62,3 +62,12 @@ class Db:
     def save_in_db(self, data):
         self.check_connection()
         self.set_collection('user', data)
+
+    def get_user_history(self, email):
+        try:
+            # Recherche les objets ayant le champ email spécifié
+            query = self.db.user.find({"email": email})
+            return [user_data for user_data in query]
+        except Exception as e:
+            print(f"Erreur lors de la récupération des données utilisateur: {e}")
+            return None
