@@ -10,11 +10,12 @@ import { User } from '../../models/user.model';
 import { DataService } from '../../services/data.service';
 import { MapComponent } from '../map/map.component';
 import { Weather } from '../../models/weather.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, MapComponent],
+  imports: [HttpClientModule, MapComponent, CommonModule],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -27,9 +28,13 @@ export class BrowseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let temp_object: any = {};
-    let temp_array: any[] = [];
-    let temp_user = JSON.parse(sessionStorage.getItem('loggedInUser')!);
+    const temp_object: any = {};
+    const temp_array: any[] = [];
+
+    const loggedInUser =sessionStorage.getItem('loggedInUser');
+    if (!loggedInUser) return this.signOut()
+    const temp_user = JSON.parse(loggedInUser);
+    
     this.user = new User(
       temp_user.aud,
       temp_user.family_name,
@@ -40,8 +45,10 @@ export class BrowseComponent implements OnInit {
       temp_array,
       temp_object
     );
+
     // this.getWeatherData();
     this.sendUserDataToBackend(this.user);
+    // this.getWeatherHistory();
   }
 
   signOut() {
@@ -52,8 +59,9 @@ export class BrowseComponent implements OnInit {
   sendUserDataToBackend(userData: any): void {
     const observer: Observer<any> = {
       next: (data) => {
-        console.log(this.user)
-        this.user = data;
+        const parsed = JSON.parse(data)
+        this.user = parsed;
+        sessionStorage.setItem('loggedInUser', data);        
       },
       error: (error) => {
         console.error('Google observer issue : ', error);
@@ -68,9 +76,8 @@ export class BrowseComponent implements OnInit {
 
   getWeatherData(): Weather {
     const observer: Observer<any> = {
-      next: (data) => {
+      next: (data) => {        
         this.weather_now = data;
-        console.log(this.weather_now)
       },
       error: (error) => {
         console.error('Observer issue');
@@ -83,5 +90,23 @@ export class BrowseComponent implements OnInit {
     this.dataservice.getWeather().subscribe(observer);
 
     return this.weather_now
+  }
+
+  getWeatherHistory(): Weather[] {
+    const observer: Observer<any> = {
+      next: (data) => {
+        this.user.weather_history = JSON.parse(data);
+      },
+      error: (error) => {
+        console.error('Observer History issue');
+      },
+      complete: () => {
+        // Optionally handle completion if needed
+      },
+    };
+
+    this.dataservice.getUserHistory(this.user.email).subscribe(observer);
+
+    return this.user.weather_history;
   }
 }

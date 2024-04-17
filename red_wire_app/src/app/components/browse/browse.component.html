@@ -1,7 +1,13 @@
 <a (click)="signOut()" class="">Sign Out</a>
 
-<p>{{ user ? user.family_name : "" }}</p>
+<p>{{ user ? user.family_name : "Loading..." }}</p>
 
-<p class="text-xl">{{ user.weather_now.name }}</p>
+<div *ngIf="weather_now">
+    <!-- <p *ngFor="let entry of weather_history" class="text-xl">{{ entry.name }}</p> -->
+    <p class="text-xl">{{ weather_now.name }}</p>
+</div>
+<div *ngIf="!weather_now">
+    Loading...
+</div>
 
 <app-map></app-map>
