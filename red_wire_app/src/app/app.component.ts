@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   title: any;
   weatherData: any; // Propriété pour stocker les données
 
+
   constructor(private dataservice: DataService) {
     provideHttpClient(withFetch());
   }

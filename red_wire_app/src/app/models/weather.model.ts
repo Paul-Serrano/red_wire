@@ -3,6 +3,7 @@ export class Weather {
   clouds: { all: number };
   cod: number;
   coord: { lat: number; lon: number };
+  date: string;
   dt: number;
   id: number;
   main: {
@@ -21,6 +22,7 @@ export class Weather {
     sunset: number;
     type: number;
   };
+  time: string;
   timezone: number;
   visibility: number;
   weather: { description: string; icon: string; id: number; main: string }[];
@@ -31,6 +33,7 @@ export class Weather {
     clouds: { all: number },
     cod: number,
     coord: { lat: number; lon: number },
+    date: string,
     dt: number,
     id: number,
     main: {
@@ -50,6 +53,7 @@ export class Weather {
       type: number;
     },
     timezone: number,
+    time: string,
     visibility: number,
     weather: { description: string; icon: string; id: number; main: string }[],
     wind: { deg: number; speed: number }
@@ -58,11 +62,13 @@ export class Weather {
     this.clouds = clouds;
     this.cod = cod;
     this.coord = coord;
+    this.date = date;
     this.dt = dt;
     this.id = id;
     this.main = main;
     this.name = name;
     this.sys = sys;
+    this.time = time;
     this.timezone = timezone;
     this.visibility = visibility;
     this.weather = weather;

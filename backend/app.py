@@ -60,8 +60,15 @@ def get_user_history():
         user_history = db.get_user_history(email)
         for user_object in user_history:
             weather_history.append(user_object['weather_now'])
-        print(weather_history[0]['name'])
-        return serializeBson(weather_history), 200
+        user_data = {
+            'weather_history' : weather_history,
+            'weather_now' : weather_history[len(weather_history) - 1],
+            'family_name' : user_history[0]['family_name'],
+            'given_name' : user_history[0]['given_name'],
+            'email' : user_history[0]['email'],
+            'client_id' : user_history[0]['client_id']
+        }
+        return serializeBson(user_data), 200
     else:
         return jsonify({"error": "Email not provided"}), 400
 
