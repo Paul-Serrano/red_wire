@@ -1,1 +1,6 @@
 <p>weather-history works!</p>
+
+<div *ngFor="let weather of user.weather_history">
+    <p>{{ weather.date }}</p>
+    <p>{{ weather.time }}</p>
+</div>

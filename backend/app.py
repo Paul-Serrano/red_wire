@@ -68,6 +68,7 @@ def get_user_history():
             'email' : user_history[0]['email'],
             'client_id' : user_history[0]['client_id']
         }
+        print(user_data)
         return serializeBson(user_data), 200
     else:
         return jsonify({"error": "Email not provided"}), 400

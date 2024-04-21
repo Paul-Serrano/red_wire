@@ -12,12 +12,14 @@ import { MapComponent } from '../map/map.component';
 import { Weather } from '../../models/weather.model';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { WeatherHistoryComponent } from '../weather-history/weather-history.component';
+import { WeatherNowComponent } from '../weather-now/weather-now.component';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, MapComponent, CommonModule, NavComponent, RouterOutlet],
+  imports: [HttpClientModule, MapComponent, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -27,7 +29,7 @@ export class BrowseComponent implements OnInit {
   weather_history!: Weather[];
   temp_user!: User;
 
-  constructor(private auth: AuthService, private dataservice: DataService) {
+  constructor(private auth: AuthService, private dataservice: DataService, private router: Router) {
     provideHttpClient(withFetch());
   }
 
@@ -44,9 +46,11 @@ export class BrowseComponent implements OnInit {
       temp_user.family_name,
       temp_user.given_name,
       temp_user.email,
-      this.getWeatherData(),
+      temp_object,
       temp_array,
     );
+
+    console.log(temp_user.email);
 
     this.sendUserDataToBackend(this.user);
     this.getWeatherData();
@@ -56,7 +60,24 @@ export class BrowseComponent implements OnInit {
     if (!user) return this.auth.signOut();
     const parsed_user = JSON.parse(user);
 
-    this.user.weather_history = parsed_user.weather_history;
+    console.log(user);
+    console.log(parsed_user);
+
+    this.user = new User(
+      parsed_user.aud,
+      parsed_user.family_name,
+      parsed_user.given_name,
+      parsed_user.email,
+      parsed_user.weather_now,
+      parsed_user.weather_history,
+    );
+
+    const passed_user = this.user;
+
+    console.log(passed_user);
+
+    this.router.navigate(['/browse/weather-now'], { state: { passed_user } });
+    this.router.navigate(['/browse/weather-history'], { state: { passed_user } });
 
     console.log(this.user);
 

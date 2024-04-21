@@ -12,6 +12,22 @@ export const routes: Routes = [
       import('./components/browse/browse.component').then(
         (a) => a.BrowseComponent
       ),
+    children: [
+      {
+        path: 'weather-now',
+        loadComponent: () =>
+          import('./components/weather-now/weather-now.component').then(
+            (a) => a.WeatherNowComponent
+          ),
+      },
+      {
+        path: 'weather-history',
+        loadComponent: () =>
+          import('./components/weather-history/weather-history.component').then(
+            (a) => a.WeatherHistoryComponent
+          ),
+      }
+    ]
   },
   {
     path: 'login',

@@ -21,6 +21,7 @@ export class DataService {
   }
 
   getUserHistory(email: string): Observable<any> {
+    console.log(encodeURIComponent(email));
     return this.http.get<any>(this.history_url + `?email=${encodeURIComponent(email)}`);
   }
 }
