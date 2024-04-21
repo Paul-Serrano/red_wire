@@ -12,14 +12,12 @@ import { MapComponent } from '../map/map.component';
 import { Weather } from '../../models/weather.model';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
-import { WeatherNowComponent } from '../weather-now/weather-now.component';
-import { WeatherHistoryComponent } from '../weather-history/weather-history.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, MapComponent, CommonModule, NavComponent, WeatherNowComponent, WeatherHistoryComponent, RouterOutlet],
+  imports: [HttpClientModule, MapComponent, CommonModule, NavComponent, RouterOutlet],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -40,7 +38,7 @@ export class BrowseComponent implements OnInit {
     const loggedInUser = sessionStorage.getItem('loggedInUser');
     if (!loggedInUser) return this.auth.signOut();
     const temp_user = JSON.parse(loggedInUser);
-    
+
     this.user = new User(
       temp_user.aud,
       temp_user.family_name,
@@ -53,6 +51,12 @@ export class BrowseComponent implements OnInit {
     this.sendUserDataToBackend(this.user);
     this.getWeatherData();
     this.getWeatherHistory();
+
+    const user = sessionStorage.getItem('loggedInUser');
+    if (!user) return this.auth.signOut();
+    const parsed_user = JSON.parse(user);
+
+    this.user.weather_history = parsed_user.weather_history;
 
     console.log(this.user);
 
@@ -97,14 +101,7 @@ export class BrowseComponent implements OnInit {
     const observer: Observer<any> = {
       next: (data) => {
         const user_data = JSON.parse(data);
-        this.user = new User(
-          user_data.client_id,
-          user_data.email,
-          user_data.family_name,
-          user_data.given_name,
-          user_data.weather_now,
-          user_data.weather_history,
-        );
+        sessionStorage.setItem('loggedInUser', JSON.stringify(user_data));
       },
       error: (error) => {
         console.error('Observer History issue');

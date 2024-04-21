@@ -11,6 +11,7 @@
 </div>
 
 <main>
+    <router-outlet></router-outlet>
     <div *ngFor="let weather of user.weather_history">
         <p>{{ weather.date }}</p>
         <p>{{ weather.time }}</p>
