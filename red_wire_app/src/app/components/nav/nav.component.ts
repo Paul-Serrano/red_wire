@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit {
+  user !: User;
   private router = inject(Router);
 
   constructor(private auth: AuthService) {
@@ -19,15 +21,17 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    const user = sessionStorage.getItem('loggedInUser');
+    if (!user) return this.auth.signOut();
+    this.user = JSON.parse(user);
   }
 
   goToWeatherHistory(): void {
-    this.router.navigate(['browse/weather-history']);
+    this.router.navigate(['/browse/weather-history'], { state: { "user":  this.user } });
   }
 
   goToWeatherNow(): void {
-    this.router.navigate(['browse/weather-now']);
+    this.router.navigate(['/browse/weather-now'], { state: { "user":  this.user } });
   }
 
   signOut(): void {

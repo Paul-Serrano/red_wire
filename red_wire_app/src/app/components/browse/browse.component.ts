@@ -19,7 +19,7 @@ import { WeatherNowComponent } from '../weather-now/weather-now.component';
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, MapComponent, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent],
+  imports: [HttpClientModule, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -52,34 +52,9 @@ export class BrowseComponent implements OnInit {
 
     console.log(temp_user.email);
 
-    this.sendUserDataToBackend(this.user);
     this.getWeatherData();
+    this.sendUserDataToBackend(this.user);
     this.getWeatherHistory();
-
-    const user = sessionStorage.getItem('loggedInUser');
-    if (!user) return this.auth.signOut();
-    const parsed_user = JSON.parse(user);
-
-    console.log(user);
-    console.log(parsed_user);
-
-    this.user = new User(
-      parsed_user.aud,
-      parsed_user.family_name,
-      parsed_user.given_name,
-      parsed_user.email,
-      parsed_user.weather_now,
-      parsed_user.weather_history,
-    );
-
-    const passed_user = this.user;
-
-    console.log(passed_user);
-
-    this.router.navigate(['/browse/weather-now'], { state: { passed_user } });
-    this.router.navigate(['/browse/weather-history'], { state: { passed_user } });
-
-    console.log(this.user);
 
   }
 
