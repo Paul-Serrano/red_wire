@@ -71,3 +71,12 @@ class Db:
         except Exception as e:
             print(f"Erreur lors de la récupération des données utilisateur: {e}")
             return None
+        
+    def delete_user_data(self, email):
+        try:
+            print('db.py')
+            print(email)
+            self.db.user.delete_many({"email": email})
+        except Exception as e:
+            print(f"Erreur lors de la suppression des données utilisateurs: {e}")
+            return None

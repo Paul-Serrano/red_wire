@@ -52,9 +52,6 @@ def get_weather():
 def get_user_history():
     # Assurez-vous d'avoir la clé 'email' dans les paramètres de la requête GET
     email = request.args.get('email')
-    print('email')
-    print(email)
-    # return '', 200
     weather_history = []
     if email:
         user_history = db.get_user_history(email)
@@ -66,11 +63,22 @@ def get_user_history():
             'family_name' : user_history[0]['family_name'],
             'given_name' : user_history[0]['given_name'],
             'email' : user_history[0]['email'],
-            'client_id' : user_history[0]['client_id']
         }
-        print(user_data)
         return serializeBson(user_data), 200
     else:
-        return jsonify({"error": "Email not provided"}), 400
+        return jsonify({"error": "Email not provided getting user history data"}), 400
+    
+@app.route('/delete-data', methods=['GET'])
+def delete_data():
+    email = request.args.get('email')
+    if email:
+        print('app.py')
+        print(email)
+        db.delete_user_data(email)
+        return serializeBson(email), 200
+    else:
+        return jsonify({"error": "Email not provided deleting data"}), 400
+
+
 
 app.run(debug=True)

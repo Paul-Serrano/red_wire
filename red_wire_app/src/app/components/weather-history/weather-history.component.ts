@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-weather-history',
@@ -15,7 +17,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 export class WeatherHistoryComponent implements OnInit {
   user!: User;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService) {
+  constructor(private route: ActivatedRoute, private auth: AuthService, private dataservice: DataService) {
     provideHttpClient(withFetch());
    }
 
@@ -24,5 +26,24 @@ export class WeatherHistoryComponent implements OnInit {
     if (!user) return this.auth.signOut();
     this.user = JSON.parse(user);
     console.log(this.user);
+  }
+
+  deleteData(): void {
+    const observer: Observer<any> = {
+      next: (data) => {        
+
+      },
+      error: (error) => {
+        console.error('Observer issue');
+      },
+      complete: () => {
+        // Optionally handle completion if needed
+      },
+    };
+
+    this.dataservice.deleteData(this.user.email).subscribe(observer);
+  //   setTimeout(() => {
+  //     this.auth.signOut();
+  // }, 2500);
   }
 }

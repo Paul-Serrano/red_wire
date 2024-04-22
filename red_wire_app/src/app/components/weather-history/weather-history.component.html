@@ -1,4 +1,6 @@
-<p>weather-history works!</p>
+<div>
+    <a (click)="deleteData()">Supprimez vos données enregistrées, et se déconnecter.</a>
+</div>
 
 <div *ngFor="let weather of user.weather_history">
     <p>{{ weather.date }}</p>
