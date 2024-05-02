@@ -1,8 +1,18 @@
-<div>
-    <a (click)="deleteData()">Supprimez vos données enregistrées, et se déconnecter.</a>
-</div>
 
-<div *ngFor="let weather of user.weather_history">
-    <p>{{ weather.date }}</p>
-    <p>{{ weather.time }}</p>
+
+<div class="mt-5">
+    
+    <div class="max-h-[35rem] overflow-y-auto">
+
+        <div *ngFor="let weather of user.weather_history">
+            <p>{{ weather.date }}</p>
+            <p>{{ weather.time }}</p>
+        </div>
+
+    </div>
+
+    <button (click)="deleteData()" class="bg-background-secondary">
+        <p>Supprimez vos données enregistrées, et se déconnecter.</p>
+    </button>
+
 </div>

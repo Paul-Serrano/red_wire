@@ -14,11 +14,12 @@ import { NavComponent } from '../nav/nav.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { WeatherHistoryComponent } from '../weather-history/weather-history.component';
 import { WeatherNowComponent } from '../weather-now/weather-now.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent],
+  imports: [HttpClientModule, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent, FooterComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
