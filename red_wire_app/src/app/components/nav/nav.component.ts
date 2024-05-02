@@ -40,4 +40,8 @@ export class NavComponent implements OnInit {
   signOut(): void {
     this.auth.signOut();
   }
+
+  getTabClass(tabName: string): string {
+    return this.activeItem === tabName ? 'bg-background-secondary' : 'bg-background-tertiary bg-opacity-50';
+  }
 }

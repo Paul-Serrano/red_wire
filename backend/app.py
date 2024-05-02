@@ -56,6 +56,7 @@ def get_user_history():
     weather_history = []
     if email:
         user_history = db.get_user_history(email)
+        user_history.reverse()
         for user_object in user_history:
             weather_history.append(user_object['weather_now'])
         user_data = {

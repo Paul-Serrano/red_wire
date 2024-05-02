@@ -1,6 +1,16 @@
 <nav>
     <ul class="flex justify-evenly items-center h-[50px]">
-        <li (click)="goToWeatherNow()" [class.bg-background-secondary]="activeItem === 'weatherNow'" class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">Infos Météo</li>
-        <li (click)="goToWeatherHistory()" [class.bg-background-secondary]="activeItem === 'weatherHistory'" class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">Historique</li>
+        <li 
+            (click)="goToWeatherNow()" 
+            [class]="getTabClass('weatherNow')" 
+            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">
+            <p>Infos Météo</p>
+        </li>
+        <li 
+            (click)="goToWeatherHistory()" 
+            [class]="getTabClass('weatherHistory')" 
+            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">
+            <p>Historique</p>
+        </li>
     </ul>
 </nav>
