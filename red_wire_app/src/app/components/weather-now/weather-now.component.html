@@ -1,11 +1,14 @@
-<p class="text-center my-5">Bienvenue à {{ user ? user.weather_now.name + " " + user.given_name : "Loading..." }}</p>
-
-<app-map></app-map>
-
-<div>
-    <div class="flex flex-col justify-evenly items-center">
-        <span>Météo: {{ user ? user.weather_now.weather[0].description : "Loading..." }}</span>
-        <span>Température: {{ user ? user.weather_now.main.temp : "Loading..." }}</span>
-        <span>Humidité: {{ user ? user.weather_now.main.humidity : "Loading..." }}</span>
+<div *ngIf="user">
+    <p class="text-center mt-5">Bienvenue à {{ user.weather_now.name + " " + user.given_name}}</p>
+    <p class="text-center mt-2 mb-5">Donnée prélevées le {{ user.weather_now.date }} à {{ user.weather_now.time }}</p>
+    
+    <app-map></app-map>
+    
+    <div class="flex flex-col justify-evenly items-center mt-5">
+        <span>Météo: {{ user.weather_now.weather[0].description }}</span>
+        <span class="my-2">Température: {{ user.weather_now.main.temp }} °C</span>
+        <span>Humidité: {{ user.weather_now.main.humidity }} %</span>
+        <span class="my-2">Pression atmosphérique: {{ user.weather_now.main.pressure }} bar</span>
     </div>
 </div>
+
