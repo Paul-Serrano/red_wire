@@ -37,6 +37,7 @@ def receive_user_data():
     date_time = datetime.datetime.now()
     data['weather_now']['date'] = date_time.date().isoformat()
     data['weather_now']['time'] = date_time.strftime("%H:%M:%S")
+    data['weather_now']['main']['temp'] = data['weather_now']['main']['temp'] - 273.15
     db.save_in_db(data)
 
  

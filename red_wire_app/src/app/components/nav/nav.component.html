@@ -1,9 +1,6 @@
 <nav>
-    <ul>
-        <li (click)="goToWeatherNow()">Infos Météo en temps réel</li>
-        <li (click)="goToWeatherHistory()">Historique de consultation</li>
-        <li>
-            <a (click)="signOut()" class="">Sign Out</a>
-        </li>
+    <ul class="flex justify-evenly items-center h-[50px]">
+        <li (click)="goToWeatherNow()" [class.bg-background-secondary]="activeItem === 'weatherNow'" class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">Infos Météo</li>
+        <li (click)="goToWeatherHistory()" [class.bg-background-secondary]="activeItem === 'weatherHistory'" class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">Historique</li>
     </ul>
 </nav>

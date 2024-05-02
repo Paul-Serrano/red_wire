@@ -1,14 +1,5 @@
 <app-nav></app-nav>
 
-<p>{{ user ? user.family_name : "Loading..." }}</p>
-
-<div *ngIf="user.weather_now">
-    <p class="text-xl">{{ user.weather_now.name }}</p>
-</div>
-<div *ngIf="!weather_now">
-    Loading...
-</div>
-
 <main>
     <router-outlet></router-outlet>
 </main>

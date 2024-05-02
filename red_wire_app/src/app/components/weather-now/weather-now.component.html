@@ -1,3 +1,11 @@
-<p>weather-now works!</p>
+<p class="text-center my-5">Bienvenue à {{ user ? user.weather_now.name + " " + user.given_name : "Loading..." }}</p>
 
 <app-map></app-map>
+
+<div>
+    <div class="flex flex-col justify-evenly items-center">
+        <span>Météo: {{ user ? user.weather_now.weather[0].description : "Loading..." }}</span>
+        <span>Température: {{ user ? user.weather_now.main.temp : "Loading..." }}</span>
+        <span>Humidité: {{ user ? user.weather_now.main.humidity : "Loading..." }}</span>
+    </div>
+</div>

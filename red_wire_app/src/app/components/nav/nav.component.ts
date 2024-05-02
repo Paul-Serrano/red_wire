@@ -14,6 +14,7 @@ import { User } from '../../models/user.model';
 })
 export class NavComponent implements OnInit {
   user !: User;
+  activeItem: string = "weatherNow";
   private router = inject(Router);
 
   constructor(private auth: AuthService) {
@@ -27,10 +28,12 @@ export class NavComponent implements OnInit {
   }
 
   goToWeatherHistory(): void {
+    this.activeItem = 'weatherHistory';
     this.router.navigate(['/browse/weather-history'], { state: { "user":  this.user } });
   }
 
   goToWeatherNow(): void {
+    this.activeItem = 'weatherNow';
     this.router.navigate(['/browse/weather-now'], { state: { "user":  this.user } });
   }
 

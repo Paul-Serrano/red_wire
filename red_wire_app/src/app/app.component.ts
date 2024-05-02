@@ -8,11 +8,12 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
+import { BandComponent } from './components/band/band.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterOutlet],
+  imports: [CommonModule, HttpClientModule, RouterOutlet, BandComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

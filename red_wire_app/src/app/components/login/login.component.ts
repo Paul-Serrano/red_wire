@@ -33,10 +33,12 @@ export class LoginComponent implements OnInit {
     });
 
     google.accounts.id.renderButton(document.getElementById('google-btn'), {
-      theme: 'filled_blue',
+      theme: 'outline',
       size: 'large',
       shape: 'rectangle',
-      width: 350,
+      width: 300,
+      height: 75,
+      locale: 'fr-FR',
     });
   }
 

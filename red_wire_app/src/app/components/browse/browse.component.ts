@@ -8,7 +8,6 @@ import {
 import { Observer } from 'rxjs';
 import { User } from '../../models/user.model';
 import { DataService } from '../../services/data.service';
-import { MapComponent } from '../map/map.component';
 import { Weather } from '../../models/weather.model';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
