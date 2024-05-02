@@ -42,8 +42,8 @@ export class WeatherHistoryComponent implements OnInit {
     };
 
     this.dataservice.deleteData(this.user.email).subscribe(observer);
-  //   setTimeout(() => {
-  //     this.auth.signOut();
-  // }, 2500);
+    setTimeout(() => {
+      this.auth.signOut();
+    }, 1000);
   }
 }

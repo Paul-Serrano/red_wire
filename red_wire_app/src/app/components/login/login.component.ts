@@ -1,7 +1,7 @@
 declare var google: any;
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { DataService } from '../../services/data.service';
@@ -11,7 +11,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
