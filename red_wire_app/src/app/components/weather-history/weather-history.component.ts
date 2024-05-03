@@ -17,7 +17,7 @@ import { Observer } from 'rxjs';
 export class WeatherHistoryComponent implements OnInit {
   user!: User;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService, private dataservice: DataService) {
+  constructor(private auth: AuthService, private dataservice: DataService) {
     provideHttpClient(withFetch());
    }
 

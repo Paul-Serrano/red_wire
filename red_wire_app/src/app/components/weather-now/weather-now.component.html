@@ -1,4 +1,4 @@
-<div *ngIf="user" class="lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:mt-10">
+<div *ngIf="user" class="lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:my-16">
     <div class="mt-5 lg:col-span-1 lg:row-span-1 lg:flex lg:flex-col lg:justify-center">
         <p class="text-center">Bienvenue à {{ user.weather_now.name + " " + user.given_name}}</p>
         <p class="text-center mt-2 mb-3">Donnée prélevées le {{ user.weather_now.date }} à {{ user.weather_now.time }}</p>

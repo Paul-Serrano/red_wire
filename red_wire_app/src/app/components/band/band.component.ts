@@ -22,6 +22,7 @@ export class BandComponent implements OnInit {
   }
 
   signOut(): void {
+    this.logged = false;
     this.auth.signOut();
   }
 }
