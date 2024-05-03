@@ -1,7 +1,11 @@
 <div class="flex justify-evenly items-center py-2 bg-background-secondary">
-    <img src="assets/img/logo-app.png" />
-    <h1 class="text-xl">RedWireApp</h1>
-    <a (click)="signOut()" class="">
-        <img src="assets/img/logo-signout.png"/>
-    </a>
+    <div>
+        <img src="assets/img/logo-app.png" />
+    </div>
+    <h1 class="text-xl lg:text-2xl">RedWire, Weather App</h1>
+    <div>
+        <a *ngIf="logged" (click)="signOut()" class="">
+            <img src="assets/img/logo-signout.png"/>
+        </a>
+    </div>
 </div>
