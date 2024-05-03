@@ -3,14 +3,14 @@
         <li 
             (click)="goToWeatherNow()" 
             [class]="getTabClass('weatherNow')" 
-            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">
-            <p>Infos Météo</p>
+            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle cursor-pointer">
+            <p class="flex justify-center w-full">Infos Météo<span class="hidden sm:flex">&nbsp;en temps réel</span></p>
         </li>
         <li 
             (click)="goToWeatherHistory()" 
             [class]="getTabClass('weatherHistory')" 
-            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle">
-            <p>Historique</p>
+            class="flex items-center justify-center w-[50%] h-[100%] text-center align-middle cursor-pointer">
+            <p class="flex justify-center w-full">Historique<span class="hidden sm:flex">&nbsp;de consultation</span></p>
         </li>
     </ul>
 </nav>
