@@ -1,10 +1,13 @@
-<div *ngIf="user">
-    <p class="text-center mt-5">Bienvenue à {{ user.weather_now.name + " " + user.given_name}}</p>
-    <p class="text-center mt-2 mb-3">Donnée prélevées le {{ user.weather_now.date }} à {{ user.weather_now.time }}</p>
+<div *ngIf="user" class="lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:mt-10">
+    <div class="mt-5 lg:col-span-1 lg:row-span-1 lg:flex lg:flex-col lg:justify-center">
+        <p class="text-center">Bienvenue à {{ user.weather_now.name + " " + user.given_name}}</p>
+        <p class="text-center mt-2 mb-3">Donnée prélevées le {{ user.weather_now.date }} à {{ user.weather_now.time }}</p>
+    </div>
     
-    <app-map></app-map>
+    <hr class="hidden lg:flex mx-auto my-10 w-[80%] h-[2.5px] bg-textColor lg:row-start-2 lg:col-start-1">
+    <app-map class="lg:col-span-2 lg:row-span-3 lg:col-start-2 lg-row-start-1"></app-map>
     
-    <div class="flex flex-col justify-evenly items-center mt-3">
+    <div class="flex flex-col justify-evenly items-center mt-3 lg:col-span-1 lg:row-span-1 lg:justify-start lg:mt-0">
         <span>Météo: {{ user.weather_now.weather[0].description }}</span>
         <span class="my-2">Température: {{ user.weather_now.main.temp }} °C</span>
         <span>Humidité: {{ user.weather_now.main.humidity }} %</span>
