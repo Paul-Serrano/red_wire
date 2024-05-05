@@ -27,7 +27,6 @@ more-itertools==8.10.0
 netifaces==0.11.0
 oauthlib==3.2.0
 packaging==24.0
-PyGObject==3.42.1
 PyJWT==2.3.0
 pymongo==4.6.3
 pyparsing==2.4.7
