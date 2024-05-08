@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
 
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
 
-      this.router.navigate(['browse/weather-now']);
+      this.router.navigate(['browse', 'weather-now']).then(() => {
+        // Recharger la page après la navigation
+        window.location.reload();
+      });
     }
   }
 }

@@ -18,7 +18,7 @@ export class BandComponent implements OnInit {
 
   ngOnInit(): void {
     const loggedInUser = sessionStorage.getItem('loggedInUser');
-    if(loggedInUser) this.logged = true;
+    if(loggedInUser && loggedInUser.length != 0) this.logged = true;
   }
 
   signOut(): void {

@@ -7,18 +7,18 @@ import { environment, environment_delete, environment_history } from '../../envi
   providedIn: 'any',
 })
 export class DataService {
-  private url = `${environment.url}`;
+  private weather_url = `${environment.url}`;
   private history_url = `${environment_history.url}`
   private delete_url = `${environment_delete.url}`
 
   constructor(private http: HttpClient) {}
 
-  getWeather(): Observable<any> {;
-    return this.http.get<any>(this.url);
+  getWeather(): Observable<any> {
+    return this.http.get<any>(this.weather_url);
   }
 
   getLoc(): Observable<any> {
-    return this.http.get<any>(this.url);
+    return this.http.get<any>(this.weather_url);
   }
 
   getUserHistory(email: string): Observable<any> {

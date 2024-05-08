@@ -15,13 +15,17 @@ module.exports = {
         background: {
           primary: "#DCF2F1",
           secondary: "#7FC7D9",
-          tertiary: "#0F1035"
+          tertiary: "#0F1035",
+          fourth: "#365486"
         },
         button: {
           primary: "#7FC7D9",
           secondary: "#365486"
         },
-        textColor: "#0F1035"
+        textColor: {
+          primary: "#0F1035",
+          secondary: "#DCF2F1"
+        }
       }
     },
     fontFamily: {

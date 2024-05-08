@@ -1,8 +1,6 @@
-<!-- rgpd.component.html -->
-
 <div class="m-5 text-center lg:mx-20">
-  <div class="lg:flex justify-evenly items-center">
-    <div class="lg:w-[40%]">
+  <div class="justify-evenly items-center lg:text-textColor-secondary lg:flex ">
+    <div class="py-5 lg:bg-background-fourth lg:rounded lg:w-[40%] lg:px-2">
       <p>
         Red Wire est une application web qui vous fournit des informations sur votre localisation et la météo environnante. 
         Vous pouvez également consulter votre historique.
@@ -13,9 +11,9 @@
       <p class="hidden md:flex">Elle se connecte à deux API : Ipinfos pour les données de géolocalisation et OpenWeather pour les données météorologiques.</p>
     </div>
 
-    <hr class="mx-auto my-5 w-[80%] h-[2.5px] bg-textColor lg:rotate-90 lg:w-[20%] lg:my-0">
+    <hr class="mx-auto my-2 w-[80%] h-[2.5px] bg-background-fourth lg:rotate-90 lg:w-[20%] lg:my-0">
     
-    <div class="lg:w-[40%]">
+    <div class="py-5 lg:bg-background-fourth lg:rounded lg:w-[40%] lg:px-2">
       <h2 class="mb-2 font-bold">Politique de confidentialité et consentement RGPD</h2>
       <p class="mb-2">
         Nous collectons certaines données personnelles pour fournir nos services. En
@@ -37,7 +35,7 @@
       </p>
     
       <h3 class="font-bold">Consentement :</h3>
-      <p class="mb-2">
+      <p class="">
         En cliquant sur "Accepter", vous consentez à la collecte et à l'utilisation
         de vos données personnelles comme décrit ci-dessus.
       </p>
@@ -46,7 +44,7 @@
   </div>
 
   <div>
-    <hr class="mx-auto my-5 w-[80%] h-[2.5px] bg-textColor lg:my-10 xl:my-20">
+    <hr class="mx-auto my-5 w-[80%] h-[2.5px] bg-textColor">
     <div class="rgpd-buttons">
       <button (click)="accept()" class="bg-button-primary w-[50%] py-3 rounded-lg">Accepter</button>
     </div>

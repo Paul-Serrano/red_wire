@@ -61,7 +61,7 @@ def get_user_history():
             weather_history.append(user_object['weather_now'])
         user_data = {
             'weather_history' : weather_history,
-            'weather_now' : weather_history[len(weather_history) - 1],
+            'weather_now' : weather_history[0],
             'family_name' : user_history[0]['family_name'],
             'given_name' : user_history[0]['given_name'],
             'email' : user_history[0]['email'],

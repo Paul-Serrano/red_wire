@@ -24,6 +24,8 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './browse.component.css',
 })
 export class BrowseComponent implements OnInit {
+  lat!: number;
+  lon!: number;
   user!: User;
   weather_now!: Weather;
   weather_history!: Weather[];
@@ -50,8 +52,7 @@ export class BrowseComponent implements OnInit {
       temp_array,
     );
 
-    console.log(temp_user.email);
-
+    this.getLocData();
     this.getWeatherData();
     this.sendUserDataToBackend(this.user);
     this.getWeatherHistory();
@@ -110,5 +111,22 @@ export class BrowseComponent implements OnInit {
     this.dataservice.getUserHistory(this.user.email).subscribe(observer);
 
     return this.user.weather_history;
+  }
+
+  getLocData(): void {
+    const observer: Observer<any> = {
+      next: (data) => {
+        this.lat = data.coord.lat;
+        this.lon = data.coord.lon;
+      },
+      error: (error) => {
+        console.error('Observer map lon & lat');
+      },
+      complete: () => {
+        // Optionally handle completion if needed
+      },
+    };
+
+    this.dataservice.getWeather().subscribe(observer);
   }
 }
