@@ -1,0 +1,52 @@
+{
+  "_id": "663514d4d23d55b589ed508a",
+  "client_id": "611241636313-e4mspa3haqippv2eto2m0fj047kcm72r.apps.googleusercontent.com",
+  "family_name": "Test",
+  "given_name": "Mystérieux·se Inconnu.e",
+  "email": "test@test.com",
+  "weather_now": {
+    "coord": {
+      "lon": -73.935242,
+      "lat": 40.73061
+    },
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 20.0,
+      "feels_like": 288.0,
+      "temp_min": 19.0,
+      "temp_max": 21.0,
+      "pressure": 1013,
+      "humidity": 70
+    },
+    "visibility": 9000,
+    "wind": {
+      "speed": 5.0,
+      "deg": 240
+    },
+    "clouds": {
+      "all": 90
+    },
+    "dt": 1722344428,
+    "sys": {
+      "type": 1,
+      "id": 5141,
+      "country": "US",
+      "sunrise": 1722283477,
+      "sunset": 1722333695,
+      "timezone": -14400
+    },
+    "id": 5128581,
+    "name": "New York",
+    "cod": 200,
+    "date": "2024-05-10",
+    "time": "12:46:12"
+  }
+}

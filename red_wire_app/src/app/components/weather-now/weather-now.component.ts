@@ -17,6 +17,7 @@ import { LoaderComponent } from '../loader/loader.component';
 export class WeatherNowComponent implements OnInit {
 
   user!: User;
+  // @Input() user!: User;
 
   constructor(private route: ActivatedRoute, private auth: AuthService) {
     provideHttpClient(withFetch());

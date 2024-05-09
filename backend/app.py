@@ -38,6 +38,7 @@ def receive_user_data():
     data['weather_now']['date'] = date_time.date().isoformat()
     data['weather_now']['time'] = date_time.strftime("%H:%M:%S")
     data['weather_now']['main']['temp'] = float("{:.2f}".format(data['weather_now']['main']['temp'] - 273.15))
+    print('user')
     db.save_in_db(data)
 
  
@@ -56,6 +57,7 @@ def get_user_history():
     weather_history = []
     if email:
         user_history = db.get_user_history(email)
+        print('history')
         user_history.reverse()
         for user_object in user_history:
             weather_history.append(user_object['weather_now'])
@@ -74,8 +76,6 @@ def get_user_history():
 def delete_data():
     email = request.args.get('email')
     if email:
-        print('app.py')
-        print(email)
         db.delete_user_data(email)
         return serializeBson(email), 200
     else:

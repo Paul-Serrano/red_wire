@@ -1,5 +1,5 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { User } from '../../models/user.model';
   styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit {
-  user !: User;
+  @Input() user !: User;
   activeItem: string = "weatherNow";
   private router = inject(Router);
 
@@ -22,9 +22,10 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const user = sessionStorage.getItem('loggedInUser');
-    if (!user) return this.auth.signOut();
-    this.user = JSON.parse(user);
+    console.log(this.user);
+    // const user = sessionStorage.getItem('loggedInUser');
+    // if (!user) return this.auth.signOut();
+    // this.user = JSON.parse(user);
   }
 
   goToWeatherHistory(): void {

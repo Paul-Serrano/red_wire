@@ -1,0 +1,52 @@
+{
+  "_id": "663514d4d23d55b589ed508a",
+  "client_id": "611241636313-e4mspa3haqippv2eto2m0fj047kcm72r.apps.googleusercontent.com",
+  "family_name": "Test",
+  "given_name": "Mystérieux·se Inconnu.e",
+  "email": "test@test.com",
+  "weather_now": {
+    "coord": {
+      "lon": 3.05,
+      "lat": 50.63
+    },
+    "weather": [
+      {
+        "id": 802,
+        "main": "Clouds",
+        "description": "scattered clouds",
+        "icon": "03d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 21.2,
+      "feels_like": 289.1,
+      "temp_min": 20.0,
+      "temp_max": 22.5,
+      "pressure": 1013,
+      "humidity": 50
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 4.0,
+      "deg": 200
+    },
+    "clouds": {
+      "all": 40
+    },
+    "dt": 1722344428,
+    "sys": {
+      "type": 1,
+      "id": 6153,
+      "country": "BE",
+      "sunrise": 1722300351,
+      "sunset": 1722357034,
+      "timezone": 7200
+    },
+    "id": 281184,
+    "name": "Brussels",
+    "cod": 200,
+    "date": "2024-05-10",
+    "time": "12:46:12"
+  }
+}

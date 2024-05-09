@@ -7,6 +7,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { DataService } from '../../services/data.service';
 import { Weather } from '../../models/weather.model';
 import { User } from '../../models/user.model';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -34,10 +35,9 @@ export class LoginComponent implements OnInit {
 
     google.accounts.id.renderButton(document.getElementById('google-btn'), {
       theme: 'outline',
-      type: 'icon',
       size: 'large',
       shape: 'rectangle',
-      width: 300,
+      width: 275,
       height: 75,
       locale: 'fr-FR',
     });
@@ -53,10 +53,29 @@ export class LoginComponent implements OnInit {
 
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
 
+      this.sendUserDataToBackend(JSON.stringify(payload));
+
       this.router.navigate(['browse', 'weather-now']).then(() => {
         // Recharger la page après la navigation
         window.location.reload();
       });
     }
+  }
+
+  sendUserDataToBackend(userData: any): void {
+    const observer: Observer<any> = {
+      next: (data) => {
+        const parsed = JSON.parse(data);
+        this.user = parsed;
+       
+      },
+      error: (error) => {
+        console.error('Google observer issue : ', error);
+      },
+      complete: () => {
+        // Optionally handle completion if needed
+      },
+    };
+    this.auth.sendUserData(userData).subscribe(observer);
   }
 }

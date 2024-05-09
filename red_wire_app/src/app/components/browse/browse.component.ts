@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {
   HttpClientModule,
@@ -15,11 +15,12 @@ import { Router, RouterOutlet } from '@angular/router';
 import { WeatherHistoryComponent } from '../weather-history/weather-history.component';
 import { WeatherNowComponent } from '../weather-now/weather-now.component';
 import { FooterComponent } from '../footer/footer.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-browse',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent, FooterComponent],
+  imports: [HttpClientModule, CommonModule, NavComponent, RouterOutlet, WeatherHistoryComponent, WeatherNowComponent, FooterComponent, LoaderComponent],
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css',
 })
@@ -31,7 +32,7 @@ export class BrowseComponent implements OnInit {
   weather_history!: Weather[];
   temp_user!: User;
 
-  constructor(private auth: AuthService, private dataservice: DataService, private router: Router) {
+  constructor(private auth: AuthService, private dataservice: DataService) {
     provideHttpClient(withFetch());
   }
 
@@ -54,26 +55,8 @@ export class BrowseComponent implements OnInit {
 
     this.getLocData();
     this.getWeatherData();
-    this.sendUserDataToBackend(this.user);
     this.getWeatherHistory();
 
-  }
-
-  sendUserDataToBackend(userData: any): void {
-    const observer: Observer<any> = {
-      next: (data) => {
-        const parsed = JSON.parse(data)
-        this.user = parsed;
-       
-      },
-      error: (error) => {
-        console.error('Google observer issue : ', error);
-      },
-      complete: () => {
-        // Optionally handle completion if needed
-      },
-    };
-    this.auth.sendUserData(userData).subscribe(observer);
   }
 
   getWeatherData(): Weather {

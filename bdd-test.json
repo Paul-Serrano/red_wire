@@ -1,0 +1,52 @@
+{
+  "_id": "663514d4d23d55b589ed508a",
+  "client_id": "611241636313-e4mspa3haqippv2eto2m0fj047kcm72r.apps.googleusercontent.com",
+  "family_name": "Test",
+  "given_name": "Mystérieux·se Inconnu.e",
+  "email": "test@test.com",
+  "weather_now": {
+    "coord": {
+      "lon": 2.2275,
+      "lat": 48.8699
+    },
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "broken clouds",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 16.45,
+      "feels_like": 288.74,
+      "temp_min": 287.82,
+      "temp_max": 291.03,
+      "pressure": 1014,
+      "humidity": 55
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 5.66,
+      "deg": 180
+    },
+    "clouds": {
+      "all": 75
+    },
+    "dt": 1714754428,
+    "sys": {
+      "type": 2,
+      "id": 2012208,
+      "country": "FR",
+      "sunrise": 1714710400,
+      "sunset": 1714763344,
+      "timezone": 7200
+    },
+    "id": 6451982,
+    "name": "Suresnes",
+    "cod": 200,
+    "date": "2024-05-03",
+    "time": "18:46:12"
+  }
+}

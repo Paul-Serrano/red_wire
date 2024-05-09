@@ -1,7 +1,11 @@
-<app-nav></app-nav>
+<app-nav [user]="user"></app-nav>
 
 <main>
     <router-outlet></router-outlet>
+    <!-- <app-loader *ngIf="!loaded_data"></app-loader> -->
 </main>
 
-<app-footer></app-footer>
+<footer>
+    <app-footer></app-footer>
+</footer>
+
