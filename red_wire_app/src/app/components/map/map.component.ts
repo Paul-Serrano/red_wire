@@ -20,10 +20,7 @@ export class MapComponent implements OnInit {
   public lon: any;
 
   public initMap(): void {
-    console.log(this.user);
     this.getLocData();
-    console.log(this.user.weather_now.coord.lat);
-    console.log(this.user.weather_now.coord.lon);
     this.map = L.map('map', {
       center: [this.user.weather_now.coord.lat, this.user.weather_now.coord.lon],
       zoom: 15,
@@ -63,9 +60,5 @@ export class MapComponent implements OnInit {
     };
 
     this.dataservice.getWeather().subscribe(observer);
-  }
-
-  reload(): void {
-    window.location.reload();
   }
 }

@@ -22,10 +22,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.user);
-    // const user = sessionStorage.getItem('loggedInUser');
-    // if (!user) return this.auth.signOut();
-    // this.user = JSON.parse(user);
+
   }
 
   goToWeatherHistory(): void {
