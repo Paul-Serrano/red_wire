@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Anta';
+    src: url('assets/fonts/Anta-Regular.ttf');
+  }
+
 ::-webkit-scrollbar {
     width: 10px !important;
 }
